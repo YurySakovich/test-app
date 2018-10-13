@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "devDependencies": {
-    "@angular/cli": "~6.2.5"
+    "@angular/cli": "~6.2.5",
+    "@angular-devkit/build-angular": "~0.8.0"
   },
   "main": "index.js",
   "scripts": {
