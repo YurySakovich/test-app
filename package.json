@@ -21,8 +21,7 @@
     "mongodb": "^3.1.8",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "tslint": "~5.11.0"
   },
   "main": "titan-backend/app.js",
   "scripts": {
