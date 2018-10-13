@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "postinstall": "ng build --aot -prod",
     "build": "ng build"
   },
   "dependencies": {
@@ -14,7 +13,7 @@
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
     "express": "~4.16.0",
-    "http-errors": "~1.6.2",
+    "http-errors": "^1.6.3",
     "mongoose": "^5.3.3",
     "mongoose-paginate": "^5.0.3",
     "morgan": "~1.9.0",
