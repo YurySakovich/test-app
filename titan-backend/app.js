@@ -38,7 +38,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/bet', { useNewUrlParser: true })
   Database at URL : mongodb://127.0.0.1:27017/bet`)
 })
 
-const path = require('path');
 // ...
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
