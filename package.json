@@ -2,12 +2,14 @@
   "name": "test-app",
   "version": "1.0.0",
   "description": "",
+  "devDependencies": {
+    "@angular/cli": "~6.2.5"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd titan-front && npm build --aot --prod",
+    "postinstall": "cd titan-front && ng build --aot --prod",
     "start": "cd titan-backend && node app.js"
-
   },
   "repository": {
     "type": "git",
