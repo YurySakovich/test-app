@@ -10,7 +10,7 @@ var cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api.route')
-
+var http = require('http');
 var app = express();
 
 // view engine setup
@@ -21,7 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './../titan-front/dist')));
+app.use(express.static(path.join(__dirname, './../titan-front/dist/titan-front')));
 app.use(cors())
 
 // app.use('/', indexRouter);
@@ -87,6 +87,16 @@ app.use(function (err, req, res, next) {
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
+});
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+var port = process.env.PORT || '3000';
+server.listen(process.env.PORT || '3000', () => {
+  console.log(port, 'port')
 });
 
 module.exports = app;
