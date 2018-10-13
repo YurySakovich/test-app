@@ -22,7 +22,9 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~2.9.2"
+    "typescript": "~2.9.2",
+    "@angular/core": "^6.1.0",
+    "rxjs": "~6.2.0"
   },
   "main": "titan-backend/app.js",
   "scripts": {
