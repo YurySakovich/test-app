@@ -28,7 +28,7 @@
   "main": "titan-backend/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd titan-backend && npm install && cd ./../titan-front && npm install",
+    "postinstall": "cd titan-backend && npm install && cd ./../titan-front && npm install && ng build --prod",
     "start": "cd titan-backend && node app.js"
   },
   "repository": {
