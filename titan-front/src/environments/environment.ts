@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  rootUrl: 'http://localhost:3000/',
-  clientRootUrl: 'http://localhost:3000/'
+  rootUrl: 'https://localhost:3000/',
+  clientRootUrl: 'https://localhost:3000/'
 };
 
 /*

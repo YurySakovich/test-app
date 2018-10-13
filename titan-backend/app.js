@@ -21,7 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './../titan-front/dist')));
 app.use(cors())
 
 // app.use('/', indexRouter);
@@ -38,7 +38,27 @@ mongoose.connect('mongodb://127.0.0.1:27017/bet', { useNewUrlParser: true })
   Database at URL : mongodb://127.0.0.1:27017/bet`)
 })
 
+const path = require('path');
+// ...
+// For all GET requests, send back index.html
+// so that PathLocationStrategy can be used
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + './../titan-front/dist/index.html'));
+});
+
 // Other stuffs ...
+const forceSSL = function() {
+  return function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(
+       ['https://', req.get('Host'), req.url].join('')
+      );
+    }
+    next();
+  }
+}
+
+app.use(forceSSL());
 
 //Use the Routes
 app.use('/', indexRouter);
@@ -69,7 +89,5 @@ app.use(function (err, req, res, next) {
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
-
 
 module.exports = app;
