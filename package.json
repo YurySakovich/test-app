@@ -5,7 +5,6 @@
   "main": "titan-backend/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm install -g @angular/cli @angular/compiler @angular/compiler-cli typescript",
     "postinstall": "cd titan-backend && npm install && cd ./../titan-front && npm install && ng build --prod",
     "start": "cd titan-backend && node app.js"
   },
