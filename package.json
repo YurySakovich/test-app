@@ -2,9 +2,8 @@
   "name": "test-app",
   "version": "1.0.0",
   "description": "",
-  "devDependencies": {
-    "@angular/cli": "~6.2.5",
-    "@angular-devkit/build-angular": "~0.8.0"
+  "dependencies": {
+    "@angular/cli": "~6.2.5"
   },
   "main": "index.js",
   "scripts": {
