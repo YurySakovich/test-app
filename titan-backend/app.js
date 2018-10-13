@@ -27,17 +27,34 @@ app.use(cors())
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-mongoose.Promise = bluebird
-mongoose.connect('mongodb://127.0.0.1:27017/bet', { useNewUrlParser: true })
-.then(() => {
-  console.log(`Succesfully Connected to the
-  Mongodb Database  at URL : mongodb://127.0.0.1:27017/bet`)
-})
-.catch(() => {
-  console.log(`Error Connecting to the Mongodb 
-  Database at URL : mongodb://127.0.0.1:27017/bet`)
-})
+// mongoose.Promise = bluebird
+// mongoose.connect('mongodb://127.0.0.1:27017/bet', { useNewUrlParser: true })
+// .then(() => {
+//   console.log(`Succesfully Connected to the
+//   Mongodb Database  at URL : mongodb://127.0.0.1:27017/bet`)
+// })
+// .catch(() => {
+//   console.log(`Error Connecting to the Mongodb 
+//   Database at URL : mongodb://127.0.0.1:27017/bet`)
+// })
+//Mongoose Settings
+//-----------------------------------------
+// const {Bet} = require("./models");
+// const mongoose = require("mongoose");
 
+// console.log("mongoose stuff intialized");
+
+app.use((req, res, next) => {
+  console.log("use for mongoose callback");
+  if (mongoose.connection.readyState) {
+    console.log("if (mongoose.connection.readyState)");
+    next();
+  } else {
+    console.log("else (mongoose.connection.readyState)");
+    require("./mongo")().then(() => next());
+    console.log("else (mongoose.connection.readyState)");
+  }
+});
 // ...
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
