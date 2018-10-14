@@ -41,23 +41,23 @@ mongoose.connect('mongodb://yura:yura1234@ds131753.mlab.com:31753/bets', { useNe
 // ...
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + './../titan-frontend/dist/titan-frontend/index.html'));
-});
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname + './../titan-frontend/dist/titan-frontend/index.html'));
+// });
 
 // Other stuffs ...
-const forceSSL = function() {
-  return function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(
-       ['https://', req.get('Host'), req.url].join('')
-      );
-    }
-    next();
-  }
-}
+// const forceSSL = function() {
+//   return function (req, res, next) {
+//     if (req.headers['x-forwarded-proto'] !== 'https') {
+//       return res.redirect(
+//        ['https://', req.get('Host'), req.url].join('')
+//       );
+//     }
+//     next();
+//   }
+// }
 
-app.use(forceSSL());
+// app.use(forceSSL());
 
 //Use the Routes
 app.use('/', indexRouter);

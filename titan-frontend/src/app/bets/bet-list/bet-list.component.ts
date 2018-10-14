@@ -12,11 +12,11 @@ export class BetListComponent implements OnInit {
   constructor(private betsApiService: BetsApiService) { }
 
   ngOnInit() {
-    // this.betsApiService.getBets()
-    //   .subscribe(data => {
-    //     this.bets = data.data;
-    //     console.log(data)
-    //   })
+    this.betsApiService.getBets()
+      .subscribe(data => {
+        this.bets = data.data;
+        console.log(data)
+      })
   }
 
 }
