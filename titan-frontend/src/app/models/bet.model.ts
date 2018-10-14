@@ -1,21 +1,29 @@
 class Bet {
-  _id:string;
-  name: String;
-  description: String;
-  date: Date;
-  status: String;
-  oraganizationName: String;
+  _id?: string;
+  date?: Date;
+  name?: string;
+  oraganizationName: string;
+  kindOfSport: string;
+  liga: string;
+  spec: string;
+  kaf: Number;
+  status: string;
+  profit: Number;
   betAmount: Number;
-  userId: String;
+  currency: string;
   constructor(
   ){
     this.name = '';
-    this.description = '';
+    this.oraganizationName = '';
     this.date = new Date();
     this.status = '';
-    this.oraganizationName = ''
+    this.liga = '';
     this.betAmount = 0;
-    this.userId = ''
+    this.currency = '';
+    this.profit = 0;
+    this.status = '';
+    this.kaf = 0;
+    this.spec = '';
   }
 }
 

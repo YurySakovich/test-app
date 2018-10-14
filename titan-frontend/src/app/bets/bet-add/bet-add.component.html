@@ -1,0 +1,45 @@
+<div class="newBetContainer">
+  <form [formGroup]="addBetForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="column">
+      <label for="">имя</label>
+      <input formControlName="name">
+    </div>
+    <div class="column">
+      <label for="">контора</label>
+      <input formControlName="oraganizationName">
+    </div>
+    <div class="column">
+      <label for="">вид спорта</label>
+      <input formControlName="kindOfSport">
+    </div>
+    <div class="column">
+      <label for="">валюта</label>
+      <input formControlName="currency">
+    </div>
+    <div class="column">
+      <label for="">лига</label>
+      <input formControlName="liga">
+    </div>
+    <div class="column">
+      <label for="">спец-я</label>
+      <input formControlName="spec">
+    </div>
+    <div class="column">
+      <label for="">кэф</label>
+      <input formControlName="kaf">
+    </div>
+    <div class="column">
+      <label for="">+/-</label>
+      <input formControlName="status">
+    </div>
+    <div class="column">
+      <label for="">сумма</label>
+      <input formControlName="betAmount">
+    </div>
+    <div class="column">
+      <label for="">прибыль</label>
+      <input formControlName="profit">
+    </div>
+    <button type="submit" class="submit">Save</button>
+  </form>
+</div>

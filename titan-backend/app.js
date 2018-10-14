@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+const bodyParser = require('body-parser');
 var path = require('path');
 // var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -23,12 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, './../titan-frontend/dist/titan-frontend')));
 app.use(cors())
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 
 mongoose.Promise = bluebird
-mongoose.connect('mongodb://yura:yura1234@ds131753.mlab.com:31753/bets', { useNewUrlParser: true })
+mongoose.connect('mongodb://yuraAmin:yura1212@ds131753.mlab.com:31753/bets', { useNewUrlParser: true })
 .then(() => {
   console.log(`Succesfully Connected to the
   Mongodb Database  at URL : mongodb://127.0.0.1:27017/bet`)
@@ -38,26 +38,6 @@ mongoose.connect('mongodb://yura:yura1234@ds131753.mlab.com:31753/bets', { useNe
   Database at URL : mongodb://127.0.0.1:27017/bet`)
 })
 
-// ...
-// For all GET requests, send back index.html
-// so that PathLocationStrategy can be used
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname + './../titan-frontend/dist/titan-frontend/index.html'));
-// });
-
-// Other stuffs ...
-// const forceSSL = function() {
-//   return function (req, res, next) {
-//     if (req.headers['x-forwarded-proto'] !== 'https') {
-//       return res.redirect(
-//        ['https://', req.get('Host'), req.url].join('')
-//       );
-//     }
-//     next();
-//   }
-// }
-
-// app.use(forceSSL());
 
 //Use the Routes
 app.use('/', indexRouter);
@@ -65,13 +45,6 @@ app.use('/', indexRouter);
 
 app.use('/api', apiRouter);
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   res.setHeader('Access-Control-Allow-Credentials', true);
-//   next();
-// });
 
 // error handler
 app.use(function (err, req, res, next) {

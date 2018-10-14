@@ -3,13 +3,17 @@ var mongoosePaginate = require('mongoose-paginate')
 
 
 var BetSchema = new mongoose.Schema({
-    name: String,
-    description: String,
     date: Date,
-    status: String,
+    name: String,
     oraganizationName: String,
+    kindOfSport: String,
+    liga: String,
+    spec: String,
+    kaf: Number,
+    status: String,
+    profit: Number,
     betAmount: Number,
-    userId: String
+    currency: String,
 })
 
 BetSchema.plugin(mongoosePaginate)

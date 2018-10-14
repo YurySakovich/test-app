@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
@@ -8,11 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BetListComponent } from './bets/bet-list/bet-list.component';
+import { BetAddComponent } from './bets/bet-add/bet-add.component';
+
+const components: any[] = [
+  BetListComponent,
+  BetAddComponent
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    BetListComponent
+    ...components
   ],
   imports: [
     BrowserModule,
@@ -20,7 +26,8 @@ import { BetListComponent } from './bets/bet-list/bet-list.component';
     SharedModule,
     CoreModule,
     RouterModule.forRoot([]),
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -38,21 +38,21 @@ exports.createBet = async function(bet){
     // Creating a new Mongoose Object by using the new keyword
     var newBet = new BetModel({
         name: bet.name,
-        description: bet.description,
         date: new Date(),
         status: bet.status,
         oraganizationName: bet.oraganizationName,
         betAmount: bet.betAmount,
-        userId: bet.userId
+        spec: bet.spec,
+        kaf: bet.kaf,
+        profit: bet.profit,
+        liga: bet.liga,
+        kindOfSport: bet.kindOfSport,
+        currency: bet.currency
     })
-    console.log(newBet, 'newBet');
     
-    try{
-        
-        // Saving the Todo 
-        
-        var savedBet = await newBet.save()
-
+    try{        
+        var savedBet = await newBet.save();
+        console.log(savedBet);
         return savedBet;
     }catch(e){
       
@@ -83,13 +83,16 @@ exports.updateBet = async function(bet){
 
     //Edit the Todo Object
 
-    oldBet.userId = bet.title
-    oldBet.name = bet.description
     oldBet.status = bet.status
+    oldBet.name = bet.name
     oldBet.oraganizationName = bet.oraganizationName
-    oldBet.userId = bet.userId
     oldBet.betAmount = bet.betAmount
-
+    oldBet.spec = bet.body.spec,
+    oldBet.kaf = bet.kaf,
+    oldBet.profit = bet.profit,
+    oldBet.liga = bet.liga,
+    oldBet.kindOfSport = bet.kindOfSport,
+    oldBet.currency = bet.currency
     console.log(oldBet)
 
     try{

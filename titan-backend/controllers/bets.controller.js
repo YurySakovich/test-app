@@ -33,21 +33,23 @@ exports.createBet = async function(req, res, next){
     // Req.Body contains the form submit values.
     var bet = {
         name: req.body.name,
-        description: req.body.description,
         date: new Date(),
         status: req.body.status,
         oraganizationName: req.body.oraganizationName,
         betAmount: req.body.betAmount,
-        userId: req.body.userId
+        spec: req.body.spec,
+        kaf: req.body.kaf,
+        profit: req.body.profit,
+        liga: req.body.liga,
+        kindOfSport: req.body.kindOfSport,
+        currency: req.body.currency
     }
-    console.log(bet, ' bet createdBet')
 
     try{
         
         // Calling the Service function with the new object from the Request Body
         
         var createdBet = await BetService.createBet(bet)
-        console.log(createdBet, ' createdBet')
         return res.status(201).json({status: 201, data: createdBet, message: "Succesfully Created Bet"})
     }catch(e){
         console.log(e, ' e')
@@ -71,12 +73,16 @@ exports.updateBet = async function(req, res, next){
     var bet = {
         id,
         name: req.body.name ? req.body.name : null,
-        description: req.body.description ? req.body.description : null,
-        date: req.body.date ? req.body.date : null,
+        date: req.body.date ? req.body.date : new Date(),
         status: req.body.status ? req.body.status : null,
         oraganizationName: req.body.oraganizationName ? req.body.oraganizationName : null,
         betAmount: req.body.betAmount ? req.body.betAmount : null,
-        userId: req.body.userId ? req.body.userId : null
+        spec: req.body.spec ? req.body.spec : null,
+        kaf: req.body.kaf ? req.body.kaf : null,
+        profit: req.body.profit ? req.body.profit : null,
+        liga: req.body.liga ? req.body.liga : null,
+        kindOfSport: req.body.kindOfSport ? req.body.kindOfSport : null,
+        currency: req.body.currency ? req.body.currency : null
     }
 
     try{
