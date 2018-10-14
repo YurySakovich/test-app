@@ -11,6 +11,8 @@ class Bet {
   profit: Number;
   betAmount: Number;
   currency: string;
+  type: string;
+  subBets: Array<Bet>
   constructor(
   ){
     this.name = '';
@@ -24,6 +26,8 @@ class Bet {
     this.status = '';
     this.kaf = 0;
     this.spec = '';
+    this.type = 'single';
+    this.subBets = [];
   }
 }
 

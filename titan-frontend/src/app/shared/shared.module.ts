@@ -9,6 +9,18 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+
+const materialModules: any[] = [
+  MatSelectModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatButtonModule
+];
+
 const modules: any[] = [
   BrowserModule,
   CommonModule,
@@ -31,7 +43,8 @@ const pipes: any[] = [
 
 @NgModule({
   imports: [
-    ...modules
+    ...modules,
+    ...materialModules
   ],
   declarations: [
     ...components,
@@ -42,6 +55,7 @@ const pipes: any[] = [
   ],
   exports: [
     ...modules,
+    ...materialModules,
     ...components,
     ...directives,
     ...pipes

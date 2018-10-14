@@ -8,6 +8,7 @@ import { BetsApiService } from './../../core/bets-api.service';
 })
 export class BetListComponent implements OnInit {
   bets: any[] = [];
+  selected = 'single';
 
   constructor(private betsApiService: BetsApiService) { }
 

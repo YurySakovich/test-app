@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { BetsApiService } from './../../core/bets-api.service';
 
@@ -9,6 +9,17 @@ import { BetsApiService } from './../../core/bets-api.service';
 })
 export class BetAddComponent implements OnInit {
   addBetForm: FormGroup;
+  _type;
+
+  @Input() set type(type) {
+    console.log(type);
+    this._type = type;
+  };
+
+  get type() {
+    return this._type;
+  }
+
   constructor(private formBuilder: FormBuilder,
               private betsApiService: BetsApiService) { }
 
@@ -29,6 +40,8 @@ export class BetAddComponent implements OnInit {
       profit: '',
       betAmount: '',
       currency: '',
+      type: '',
+      subBets: []
     })
   }
 

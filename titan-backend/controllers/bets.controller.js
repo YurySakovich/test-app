@@ -36,13 +36,15 @@ exports.createBet = async function(req, res, next){
         date: new Date(),
         status: req.body.status,
         oraganizationName: req.body.oraganizationName,
+        subBets: req.body.subBets,
         betAmount: req.body.betAmount,
         spec: req.body.spec,
         kaf: req.body.kaf,
         profit: req.body.profit,
         liga: req.body.liga,
         kindOfSport: req.body.kindOfSport,
-        currency: req.body.currency
+        currency: req.body.currency,
+        type: req.body.type
     }
 
     try{
@@ -82,7 +84,9 @@ exports.updateBet = async function(req, res, next){
         profit: req.body.profit ? req.body.profit : null,
         liga: req.body.liga ? req.body.liga : null,
         kindOfSport: req.body.kindOfSport ? req.body.kindOfSport : null,
-        currency: req.body.currency ? req.body.currency : null
+        currency: req.body.currency ? req.body.currency : null,
+        type: req.body.type ? req.body.type : null,
+        subBets: req.body.subBets ? req.body.subBets : null
     }
 
     try{

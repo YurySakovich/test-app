@@ -14,6 +14,8 @@ var BetSchema = new mongoose.Schema({
     profit: Number,
     betAmount: Number,
     currency: String,
+    type: String,
+    subBets: Array
 })
 
 BetSchema.plugin(mongoosePaginate)

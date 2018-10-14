@@ -1,5 +1,11 @@
+<button mat-button *ngIf="type === 'express'">Add</button>
+
 <div class="newBetContainer">
   <form [formGroup]="addBetForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="column">
+      <label for="">тип</label>
+      <input formControlName="type">
+    </div>
     <div class="column">
       <label for="">имя</label>
       <input formControlName="name">
@@ -42,4 +48,8 @@
     </div>
     <button type="submit" class="submit">Save</button>
   </form>
+</div>
+
+<div class="subPagesContainer" *ngIf="type === 'express'">
+  <div>subBets</div>
 </div>

@@ -47,7 +47,9 @@ exports.createBet = async function(bet){
         profit: bet.profit,
         liga: bet.liga,
         kindOfSport: bet.kindOfSport,
-        currency: bet.currency
+        currency: bet.currency,
+        type: bet.type,
+        subBets: bet.subBets
     })
     
     try{        
@@ -93,6 +95,9 @@ exports.updateBet = async function(bet){
     oldBet.liga = bet.liga,
     oldBet.kindOfSport = bet.kindOfSport,
     oldBet.currency = bet.currency
+    oldBet.type = bet.type
+    oldBet.subBets = bet.subBets
+
     console.log(oldBet)
 
     try{

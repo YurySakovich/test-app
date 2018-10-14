@@ -1,4 +1,11 @@
 <p>
   bet-list works!
 </p>
-<app-bet-add></app-bet-add>
+<mat-form-field>
+  <mat-select [(value)]="selected">
+    <!-- <mat-option>None</mat-option> -->
+    <mat-option value="single">single</mat-option>
+    <mat-option value="express">express</mat-option>
+  </mat-select>
+</mat-form-field>
+<app-bet-add [type]="selected"></app-bet-add>
