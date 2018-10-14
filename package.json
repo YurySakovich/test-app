@@ -5,15 +5,15 @@
   "main": "titan-backend/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "cd titan-backend && npm install && cd ./../titan-front && npm install && ng build --prod",
+    "postinstall": "cd titan-backend && npm install && cd ./../titan-frontend && npm install",
     "start": "cd titan-backend && node app.js"
   },
   "dependencies": {
     "@angular/animations": "^6.1.0",
     "@angular-devkit/build-angular": "~0.8.0",
-    "@angular/cli": "^6.2.5",
+    "@angular/cli": "1.5.2",
     "@angular/common": "^6.1.0",
-    "@angular/compiler-cli": "^6.1.10",
+    "@angular/compiler-cli": "5.0.0",
     "@angular/core": "^6.1.0",
     "@angular/forms": "^6.1.0",
     "@angular/http": "^6.1.0",

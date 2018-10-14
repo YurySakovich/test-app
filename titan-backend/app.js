@@ -21,7 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
-app.use(express.static(path.join(__dirname, './../titan-front/dist/titan-front')));
+app.use(express.static(path.join(__dirname, './../titan-frontend/dist/titan-frontend')));
 app.use(cors())
 
 // app.use('/', indexRouter);
@@ -42,7 +42,7 @@ mongoose.connect('mongodb://yura:yura1234@ds131753.mlab.com:31753/bets', { useNe
 // For all GET requests, send back index.html
 // so that PathLocationStrategy can be used
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + './../titan-front/dist/index.html'));
+  res.sendFile(path.join(__dirname + './../titan-frontend/dist/titan-frontend/index.html'));
 });
 
 // Other stuffs ...
