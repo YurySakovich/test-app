@@ -1,55 +1,80 @@
-<button mat-button *ngIf="type === 'express'">Add</button>
+<button mat-button *ngIf="type === 'express'" (click)="addItem()">Add</button>
 
 <div class="newBetContainer">
   <form [formGroup]="addBetForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field class="column">
+      <input matInput formControlName="type" placeholder="тип">
+    </mat-form-field>
+    <mat-form-field class="column">
+      <input matInput formControlName="name" placeholder="имя">
+    </mat-form-field>
+    <mat-form-field class="column">
+      <mat-select placeholder="контора" formControlName="oraganizationName">
+        <mat-option *ngFor="let bk of bkNames" [value]="bk">
+          {{bk}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="column">
+      <mat-select placeholder="вид спорта" formControlName="kindOfSport">
+        <mat-option *ngFor="let sport of sportKinds" [value]="sport">
+          {{sport}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field  class="column">
+      <mat-select placeholder="валюта" formControlName="currency">
+        <mat-option *ngFor="let currency of currencyTypes" [value]="currency">
+          {{currency}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="column">
+      <input matInput formControlName="liga" placeholder="лига">
+    </mat-form-field>
+    <mat-form-field class="column">
+      <input matInput formControlName="spec" placeholder="спец-я">
+    </mat-form-field>
+    <mat-form-field class="column">
+      <input matInput placeholder="кэф" formControlName="kaf">
+    </mat-form-field>
+
     <div class="column">
-      <label for="">тип</label>
-      <input formControlName="type">
+      <mat-checkbox formControlName="status" >+/-</mat-checkbox>
     </div>
-    <div class="column">
-      <label for="">имя</label>
-      <input formControlName="name">
-    </div>
-    <div class="column">
-      <label for="">контора</label>
-      <input formControlName="oraganizationName">
-    </div>
-    <div class="column">
-      <label for="">вид спорта</label>
-      <input formControlName="kindOfSport">
-    </div>
-    <div class="column">
-      <label for="">валюта</label>
-      <input formControlName="currency">
-    </div>
-    <div class="column">
-      <label for="">лига</label>
-      <input formControlName="liga">
-    </div>
-    <div class="column">
-      <label for="">спец-я</label>
-      <input formControlName="spec">
-    </div>
-    <div class="column">
-      <label for="">кэф</label>
-      <input formControlName="kaf">
-    </div>
-    <div class="column">
-      <label for="">+/-</label>
-      <input formControlName="status">
-    </div>
-    <div class="column">
-      <label for="">сумма</label>
-      <input formControlName="betAmount">
-    </div>
-    <div class="column">
-      <label for="">прибыль</label>
-      <input formControlName="profit">
-    </div>
+    <mat-form-field class="column">
+      <input matInput placeholder="сумма" formControlName="betAmount" type="number" step=".001" >
+    </mat-form-field>
+    <mat-form-field class="column">
+      <input matInput placeholder="прибыль" formControlName="profit">
+    </mat-form-field>
     <button type="submit" class="submit">Save</button>
   </form>
 </div>
 
 <div class="subPagesContainer" *ngIf="type === 'express'">
-  <div>subBets</div>
+  <h4>subBets</h4>
+  <div *ngFor="let bet of addBetForm.get('subBets').controls; let i = index" class="sub-container">
+    <form [formGroup]="bet" novalidate>
+      <mat-form-field class="column">
+        <mat-select placeholder="вид спорта" formControlName="kindOfSport">
+          <mat-option *ngFor="let sport of sportKinds" [value]="sport">
+            {{sport}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="column">
+        <input matInput formControlName="liga" placeholder="лига">
+      </mat-form-field>
+      <mat-form-field class="column">
+        <input matInput formControlName="spec" placeholder="спец-я">
+      </mat-form-field>
+      <mat-form-field class="column">
+        <input matInput placeholder="кэф" formControlName="kaf">
+      </mat-form-field>
+      <div class="column">
+        <mat-checkbox formControlName="status" >+/-</mat-checkbox>
+      </div>
+    </form>
+  </div>
 </div>

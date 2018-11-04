@@ -1,6 +1,7 @@
 // Accessing the Service that we just created
 
 var BetService = require('../services/bet.service')
+var LeagueService = require('../services/league.service')
 
 // Async Controller function to get the To do List
 
@@ -29,7 +30,6 @@ exports.getBets = async function(req, res, next){
 }
 
 exports.createBet = async function(req, res, next){
-
     // Req.Body contains the form submit values.
     var bet = {
         name: req.body.name,
@@ -37,24 +37,29 @@ exports.createBet = async function(req, res, next){
         status: req.body.status,
         oraganizationName: req.body.oraganizationName,
         subBets: req.body.subBets,
-        betAmount: req.body.betAmount,
+        betAmount: Number(req.body.betAmount),
         spec: req.body.spec,
-        kaf: req.body.kaf,
-        profit: req.body.profit,
+        kaf: Number(req.body.kaf),
+        profit: Number(req.body.profit),
         liga: req.body.liga,
         kindOfSport: req.body.kindOfSport,
         currency: req.body.currency,
         type: req.body.type
     }
 
+    var league = {
+        name: req.body.liga,
+    }
+
     try{
         
         // Calling the Service function with the new object from the Request Body
-        
+        var createdLeague = await LeagueService.createLeague(league);
+
         var createdBet = await BetService.createBet(bet)
         return res.status(201).json({status: 201, data: createdBet, message: "Succesfully Created Bet"})
     }catch(e){
-        console.log(e, ' e')
+        console.log(e.message, ' e')
 
         //Return an Error Response Message with Code and the Error Message.
         

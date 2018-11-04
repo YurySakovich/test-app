@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import Bet from '../models/bet.model';
 
@@ -26,6 +26,10 @@ export class BetsApiService {
 
   public removeBet(id: Number): Observable<any> {
     return this.http.delete(`${this.betUrl}/${id}`);
+  }
+
+  public getLigs() {
+    return of(['ЧБ', 'ЧР']);
   }
 
 }

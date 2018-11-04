@@ -9,6 +9,7 @@ var models = {};
 
 // Load models and attach to models here
 models.Bet = require('./bet.model');
+models.League = require('./league.model');
 
 //... more models
 

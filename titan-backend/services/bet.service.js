@@ -54,7 +54,7 @@ exports.createBet = async function(bet){
     
     try{        
         var savedBet = await newBet.save();
-        console.log(savedBet);
+
         return savedBet;
     }catch(e){
       

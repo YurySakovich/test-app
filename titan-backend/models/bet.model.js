@@ -10,7 +10,7 @@ var BetSchema = new mongoose.Schema({
     liga: String,
     spec: String,
     kaf: Number,
-    status: String,
+    status: Boolean,
     profit: Number,
     betAmount: Number,
     currency: String,
