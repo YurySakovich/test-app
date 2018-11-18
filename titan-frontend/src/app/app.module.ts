@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BetListComponent } from './bets/bet-list/bet-list.component';
 import { BetAddComponent } from './bets/bet-add/bet-add.component';
+import { BetsComponent } from './bets/bets/bets.component';
 
 const components: any[] = [
   BetListComponent,
@@ -18,7 +19,8 @@ const components: any[] = [
 @NgModule({
   declarations: [
     AppComponent,
-    ...components
+    ...components,
+    BetsComponent
   ],
   imports: [
     BrowserModule,

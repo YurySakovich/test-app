@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { BetsApiService } from './../../core/bets-api.service';
+import { Observable, of } from 'rxjs';
+import {  OnDestroy } from '@angular/core';
+import { debounceTime, map, switchMap } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-bet-add',
@@ -14,6 +18,8 @@ export class BetAddComponent implements OnInit {
   bkNames = ['Marathon', 'PariMatch']
   currencyTypes = ['Рубли', 'Евро', 'Доллары']
   sportKinds = ['Футбол', 'Волейбол', 'Теннис', 'Бейсбол', 'Бадминтон', 'Баскетбол', 'Футзал', 'Гандбол', 'Хоккей', 'Хоккей на траве']
+  leagues = [];
+  leagueValue= '';
 
   @Input() set type(type) {
     if(this.addBetForm) {
@@ -32,7 +38,23 @@ export class BetAddComponent implements OnInit {
   ngOnInit() {
     this.addBetForm = this.createFormGroupWithBuilder();
     this.bets = this.addBetForm.get('subBets') as FormArray;
-    console.log(this.formBuilder)
+    
+    this.betsApiService.getLeagues()
+      .subscribe(data => {
+        this.leagues = data.data.docs;
+      })
+
+    this.addBetForm.controls['liga'].valueChanges
+      .pipe(
+        debounceTime(400),
+        switchMap((data: any) => {
+          return of(this.filterByValue(data))
+        })
+      )
+      .subscribe((leagues: any) => {
+        this.leagues = leagues;
+      });
+
   }
 
   createFormGroupWithBuilder() {
@@ -77,14 +99,34 @@ export class BetAddComponent implements OnInit {
   addItem(): void {
     this.bets = this.addBetForm.get('subBets') as FormArray;
     this.bets.push(this.createItem());
-    console.log(this.bets)
   }
 
   onSubmit() {
-    console.log(this.addBetForm.value, 'add bet')
     this.betsApiService.createBet(this.addBetForm.value)
     .subscribe(data => {
-      console.log(data, 'data')
+      this.reset();
+    }, err => {
+      this.reset();
     })
+  }
+
+  reset() {
+    this.addBetForm.controls['liga'].setValue('');
+    this.addBetForm.controls['kindOfSport'].setValue(this.sportKinds[0]);
+    this.addBetForm.controls['spec'].setValue('');
+    this.addBetForm.controls['kaf'].setValue('1.');
+    this.addBetForm.controls['status'].setValue(true);
+    this.addBetForm.controls['betAmount'].setValue('');
+    this.addBetForm.controls['profit'].setValue('');
+  }
+
+  private filterByValue(value: string): any[] {
+    if (!value) {
+      return this.leagues;
+    }
+
+    return this.leagues.filter((league) => {
+      return _.includes(league.name.toLowerCase(), value.toLowerCase());
+    });
   }
 }

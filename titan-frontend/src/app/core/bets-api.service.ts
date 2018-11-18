@@ -16,6 +16,10 @@ export class BetsApiService {
     return this.http.get(`${this.betUrl}`);
   }
 
+  public getLeagues(): Observable<any> {
+    return this.http.get(`${this.betUrl}/leagues`);
+  }
+
   public createBet(bet: Bet): Observable<any> {
     return this.http.post(`${this.betUrl}`, bet);
   }

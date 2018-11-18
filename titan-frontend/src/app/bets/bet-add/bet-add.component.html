@@ -63,9 +63,16 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <mat-form-field class="column">
-        <input matInput formControlName="liga" placeholder="лига">
+        <input matInput placeholder="лига" formControlName="liga" aria-label="лига" [matAutocomplete]="auto" >
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let league of leagues | async" [value]="league.name">
+            <span>{{league.name}}</span> |
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
+
       <mat-form-field class="column">
         <input matInput formControlName="spec" placeholder="спец-я">
       </mat-form-field>

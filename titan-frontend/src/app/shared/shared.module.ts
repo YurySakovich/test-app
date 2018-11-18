@@ -14,13 +14,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const materialModules: any[] = [
   MatSelectModule,
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatMenuModule,
+  MatAutocompleteModule
 ];
 
 const modules: any[] = [
