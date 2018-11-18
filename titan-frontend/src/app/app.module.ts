@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { BetListComponent } from './bets/bet-list/bet-list.component';
 import { BetAddComponent } from './bets/bet-add/bet-add.component';
 import { BetsComponent } from './bets/bets/bets.component';
+import { MenuComponent } from './bets/menu/menu.component';
 
 const components: any[] = [
   BetListComponent,
@@ -20,7 +21,8 @@ const components: any[] = [
   declarations: [
     AppComponent,
     ...components,
-    BetsComponent
+    BetsComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

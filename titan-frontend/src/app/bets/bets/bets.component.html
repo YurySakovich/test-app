@@ -1,3 +1,16 @@
-<p>
-  bets works!
-</p>
+<app-menu></app-menu>
+<h3>Список ставок</h3>
+<div class="betsWrapper">
+  <div *ngFor="let bet of bets" class="bet-line">
+    <span class="bet">{{bet.type}}</span>
+    <span class="bet">{{bet.oraganizationName}}</span>
+    <span class="bet">{{bet.currency}}</span>
+    <span class="bet">{{bet.kindOfSport}}</span>
+    <span class="bet" *ngIf="bet.status"><i class="fas fa-check-circle success"></i></span>
+    <span class="bet" *ngIf="!bet.status"><i class="fas fa-minus-circle fail"></i></span>
+    <span class="bet">{{bet.spec}}</span>
+    <span class="bet">{{bet.liga}}</span>
+    <span class="bet">{{bet.kaf}}</span>
+    <span class="bet">{{bet.betAmount}}</span>
+  </div>
+</div>
