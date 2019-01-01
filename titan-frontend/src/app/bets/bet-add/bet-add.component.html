@@ -9,7 +9,7 @@
       <input matInput formControlName="name" placeholder="имя">
     </mat-form-field>
     <mat-form-field class="column">
-      <mat-select placeholder="контора" formControlName="oraganizationName">
+      <mat-select placeholder="контора" formControlName="oraganizationName" (selectionChange)="selectionChange($event)">
         <mat-option *ngFor="let bk of bkNames" [value]="bk">
           {{bk}}
         </mat-option>
@@ -22,6 +22,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
     <mat-form-field  class="column">
       <mat-select placeholder="валюта" formControlName="currency">
         <mat-option *ngFor="let currency of currencyTypes" [value]="currency">
@@ -29,9 +30,16 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+
     <mat-form-field class="column">
-      <input matInput formControlName="liga" placeholder="лига">
+      <input matInput placeholder="лига" formControlName="liga" aria-label="лига" [matAutocomplete]="auto" >
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="itemSelected()">
+        <mat-option *ngFor="let league of leagues" [value]="league">
+          <span>{{league}}</span>
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
+
     <mat-form-field class="column">
       <input matInput formControlName="spec" placeholder="спец-я">
     </mat-form-field>
@@ -45,9 +53,14 @@
     <mat-form-field class="column">
       <input matInput placeholder="сумма" formControlName="betAmount" type="number" step=".001" >
     </mat-form-field>
+
+    <p-calendar formControlName="date" showTime="true" hourFormat="12" class="dateTime"></p-calendar>
+
     <mat-form-field class="column">
       <input matInput placeholder="прибыль" formControlName="profit">
     </mat-form-field>
+
+
     <button type="submit" class="submit">Save</button>
   </form>
 </div>
@@ -66,9 +79,9 @@
 
       <mat-form-field class="column">
         <input matInput placeholder="лига" formControlName="liga" aria-label="лига" [matAutocomplete]="auto" >
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let league of leagues | async" [value]="league.name">
-            <span>{{league.name}}</span> |
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="itemSelected()">
+          <mat-option *ngFor="let league of allLeagues" [value]="league">
+            <span>{{league}}</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

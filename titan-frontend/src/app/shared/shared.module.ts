@@ -16,6 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {CalendarModule} from 'primeng/calendar';
 
 const materialModules: any[] = [
   MatSelectModule,
@@ -24,7 +25,8 @@ const materialModules: any[] = [
   MatButtonModule,
   MatCheckboxModule,
   MatMenuModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  CalendarModule
 ];
 
 const modules: any[] = [

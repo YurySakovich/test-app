@@ -38,7 +38,7 @@ exports.createBet = async function(bet){
     // Creating a new Mongoose Object by using the new keyword
     var newBet = new BetModel({
         name: bet.name,
-        date: new Date(),
+        date: bet.date || new Date(),
         status: bet.status,
         oraganizationName: bet.oraganizationName,
         betAmount: bet.betAmount,

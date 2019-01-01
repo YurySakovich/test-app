@@ -15,11 +15,12 @@ export class BetAddComponent implements OnInit {
   addBetForm: FormGroup;
   _type;
   bets;
-  bkNames = ['Marathon', 'PariMatch']
+  bkNames = ['Marathon', 'PariMatch', 'bet365', 'Wh']
   currencyTypes = ['Рубли', 'Евро', 'Доллары']
-  sportKinds = ['Футбол', 'Волейбол', 'Теннис', 'Бейсбол', 'Бадминтон', 'Баскетбол', 'Футзал', 'Гандбол', 'Хоккей', 'Хоккей на траве']
+  sportKinds = ['Футбол', 'Волейбол', 'Теннис', 'Бейсбол', 'Бадминтон', 'Баскетбол', 'Футзал', 'Гандбол', 'Хоккей', 'Хоккей на траве', 'Крикет']
   leagues = [];
   leagueValue= '';
+  allLeagues = [];
 
   @Input() set type(type) {
     if(this.addBetForm) {
@@ -41,7 +42,9 @@ export class BetAddComponent implements OnInit {
     
     this.betsApiService.getLeagues()
       .subscribe(data => {
-        this.leagues = data.data.docs;
+        
+        this.leagues = data.data.docs.map(el => el.name);
+        this.allLeagues = this.leagues;
       })
 
     this.addBetForm.controls['liga'].valueChanges
@@ -59,7 +62,7 @@ export class BetAddComponent implements OnInit {
 
   createFormGroupWithBuilder() {
     return this.formBuilder.group({
-      date: '',
+      date: new Date(),
       name: 'Иван',
       oraganizationName: this.bkNames[0],
       kindOfSport: this.sportKinds[0],
@@ -77,7 +80,7 @@ export class BetAddComponent implements OnInit {
 
   createItem(): FormGroup {
     return this.formBuilder.group({
-      // date: '',
+      // date: new Date(),
       // name: '',
       // oraganizationName: '',
       kindOfSport: this.sportKinds[0],
@@ -93,7 +96,6 @@ export class BetAddComponent implements OnInit {
   }
 
   onChange(event) {
-
   }
 
   addItem(): void {
@@ -118,15 +120,26 @@ export class BetAddComponent implements OnInit {
     this.addBetForm.controls['status'].setValue(true);
     this.addBetForm.controls['betAmount'].setValue('');
     this.addBetForm.controls['profit'].setValue('');
+    this.addBetForm.controls['date'].setValue(new Date());
   }
 
   private filterByValue(value: string): any[] {
     if (!value) {
-      return this.leagues;
+      return this.allLeagues;
     }
 
-    return this.leagues.filter((league) => {
-      return _.includes(league.name.toLowerCase(), value.toLowerCase());
+    return this.allLeagues.filter((league) => {
+      return _.includes(league.toLowerCase(), value.toLowerCase());
     });
+  }
+
+  selectionChange(data) {
+    if(data.value === 'bet365' || data.value === 'Wh') {
+      this.addBetForm.controls['currency'].setValue(this.currencyTypes[2]);
+    }
+  }
+
+  itemSelected(ev) {
+    this.leagues = this.allLeagues;
   }
 }

@@ -33,7 +33,7 @@ exports.createBet = async function(req, res, next){
     // Req.Body contains the form submit values.
     var bet = {
         name: req.body.name,
-        date: new Date(),
+        date: bet.date || new Date(),
         status: req.body.status,
         oraganizationName: req.body.oraganizationName,
         subBets: req.body.subBets,

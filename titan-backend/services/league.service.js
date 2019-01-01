@@ -22,7 +22,6 @@ exports.getLeagues = async function(query, page, limit){
     
     try {
         var leagues = await LeagueModel.paginate(query, options)
-        
         // Return the todod list that was retured by the mongoose promise
 
         return leagues;
